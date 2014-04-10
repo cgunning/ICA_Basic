@@ -1,4 +1,4 @@
-#Thu Apr 10 15:16:57 CEST 2014
+#Thu Apr 10 17:43:36 CEST 2014
 base.iphone=1475155033
 encoding//apps/ICAbasic_app/common/products.html=UTF-8
 base.android=4186851560
@@ -7,6 +7,7 @@ fipshttp.android=1259741140
 wl_version=6.1.0.01.20140311-2356
 eclipse.preferences.version=1
 ICAbasic_app.android.native=4186851560
+encoding//adapters/BasicAdapter/BasicAdapter-impl.js=UTF-8
 jsonstore.android=2746434164
 analytics.ipad=3424018893
 encoding//apps/ICAbasic_app/common/css/main.css=UTF-8
@@ -16,6 +17,6 @@ fipshttp.ipad=1204642243
 wl_compatible_version=
 base.ipad=1475155033
 ICAbasic_app.ipad.native=1475155033
-ICAbasic_app.iphone.native=1475155033
-analytics.iphone=3086137238
 analytics.android=2408201680
+analytics.iphone=3086137238
+ICAbasic_app.iphone.native=1475155033

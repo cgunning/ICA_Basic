@@ -1,40 +1,94 @@
 <!DOCTYPE HTML>
 <html>
-    	<head>
-    		<meta charset="UTF-8">
-    		<title>index</title>
-    		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
-    		<link rel="shortcut icon" href="images/favicon.png">
-    		<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    		<link href="jqueryMobile/jquery.mobile-1.4.2.css" rel="stylesheet">
-    		<link rel="stylesheet" href="css/main.css">
-    		<script>window.$ = window.jQuery = WLJQ;</script>
-    		<script src="jqueryMobile/jquery.mobile-1.4.2.js"></script>
-    	</head>
-    	<body style="display: none;">
-    		<div data-role="page" id="page">
+<head>
+<meta charset="UTF-8">
+<title>index</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+<link rel="shortcut icon" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link href="jqueryMobile/jquery.mobile-1.4.2.css" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<script>
+	window.$ = window.jQuery = WLJQ;
+</script>
+<script src="jqueryMobile/jquery.mobile-1.4.2.js"></script>
+<script type="text/javascript">
+	function loadStuff() {
+		var xmlhttp;
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp = new XMLHttpRequest();
+		} else {// code for IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				document.getElementById("mainDiv").innerHTML = xmlhttp.responseText;
+			}
+		}
+		xmlhttp.open("GET", "products.html", true);
+		xmlhttp.send();
+	}
+	function vote(id, plus) {
+		var invocationData = {
+			adapter : 'BasicAdapter',
+			procedure : 'vote',
+			parameters : [id, plus]
+		}
+		var options = {
+			onSuccess : voteSuccess,
+			onFailure : voteFailure
+		}
+
+		WL.Client.invokeProcedure(invocationData, options);
+	}
+
+	function voteSuccess(result) {
+		WL.Logger.debug(result);
+	}
+
+	function voteFailure(result) {
+		WL.Logger.debug("FEJL");
+	}
+</script>
+</head>
+<body style="display: none;">
+	<div data-role="page" id="page">
 		<div data-role="header" id="header" data-position="fixed">
 			<div data-role="navbar" id="navbar">
 				<ul>
 					<li><a href="#" id="item0">HÄMM</a></li>
-					<li><a href="#" id="item1">Item</a></li>
+					<li><a href="#" id="item1" onclick="loadStuff()">Products</a></li>
 				</ul>
 			</div>
-			<h3>ICA </h3>
+			<h3>ICA</h3>
 			<label for="search" id="label">Search Input:</label><input
 				type="search" name="search" id="search">
 		</div>
-		<div class="ui-grid-b">
-			<div class="ui-block-a"><img src="images/bomullspinnar.jpg" /></div>
-			<div class="ui-block-b"><img src="images/käxx.jpg" /></div>
-			<div class="ui-block-c"><img src="images/kvarg.jpg" /></div>
-			<div class="ui-block-a"><img src="images/lasagne.jpg" /></div>
-			<div class="ui-block-b"><img src="images/toarulle.jpeg" /></div>
-			<div class="ui-block-c"><img src="images/tvål.jpg" /></div>
+		<div id="mainDiv">
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<img src="images/kategorier/färsk.png" />
+				</div>
+				<div class="ui-block-b">
+					<img src="images/kategorier/FG.png" /div>
+					<div class="ui-block-c">
+						<img src="images/kategorier/fryst.png" />
+					</div>
+					<div class="ui-block-a">
+						<img src="images/kategorier/Hushåll.png" />
+					</div>
+					<div class="ui-block-b">
+						<img src="images/kategorier/kolonial.png" />
+					</div>
+					<div class="ui-block-c">
+						<img src="images/kategorier/mejeri.png" />
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-	<script src="js/initOptions.js"></script>
-    		<script src="js/main.js"></script>
-    		<script src="js/messages.js"></script>
-    	</body>
+		<script src="js/initOptions.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/messages.js"></script>
+</body>
 </html>
